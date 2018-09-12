@@ -5,8 +5,9 @@ import {
 } from 'path'
 //
 import {
-	DefinePlugin as webpack__define_plugin,
+	EnvironmentPlugin as webpack__environment_plugin,
 	optimize as webpack__optimize,
+	PrefetchPlugin as webpack__prefetch_plugin,
 } from 'webpack'
 //
 export default (env) => {
@@ -18,11 +19,7 @@ export default (env) => {
 		{
 			context: path__join(__dirname, 'source'),
 			entry: {
-				common: [
-					'./common',
-					'./favicon.ico',
-					'./index.pug',
-				],
+				common: './common',
 			},
 			output: {
 				filename: '[name].js',
@@ -35,10 +32,12 @@ export default (env) => {
 					minChunks: Infinity,
 					name: 'vendor',
 				}),
+				new webpack__prefetch_plugin(path__join(__dirname, '..', 'source'), './favicon.ico'),
+				new webpack__prefetch_plugin(path__join(__dirname, '..', 'source'), './index.pug'),
 			],
 			resolveLoader: {
 				moduleExtensions: [
-					'-loader',
+					'-' + 'loader',
 				],
 			},
 		},
@@ -65,8 +64,8 @@ export default (env) => {
 				path: path__join(__dirname, 'public'),
 			},
 			plugins: [
-				new webpack__define_plugin({
-					'process.env.NODE_ENV': JSON.stringify('production'),
+				new webpack__environment_plugin({
+					NODE_ENV: 'production',
 				}),
 				new webpack__optimize.ModuleConcatenationPlugin(),
 			],

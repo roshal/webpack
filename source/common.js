@@ -2,9 +2,7 @@ import './common.sass'
 //
 import lodash from 'lodash'
 //
-import {
-	onReady as functions__on_ready,
-} from './scripts/modules/functions'
+import load from './scripts/modules/load'
 //
 const component = (() => {
 	const div = document.createElement('div')
