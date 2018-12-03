@@ -1,4 +1,17 @@
 scripts:
+  #
+  webpack-develop: webpack --env.develop
+  webpack-produce: webpack --env.produce -p
+  webpack-server-develop: webpack-dev-server --hot --env.develop
+  webpack-server-produce: webpack-dev-server --hot --env.produce -p
+  #
+  firebase-deploy: firebase deploy
+  firebase-server: firebase serve
+  #
+  reproduce: nps produce firebase-deploy
+  server-develop: nps webpack-server-develop
+  server-produce: nps webpack-server-produce
+scripts:
   develop:
     default: nps server.develop
   produce:

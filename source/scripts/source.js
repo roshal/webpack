@@ -1,8 +1,9 @@
-import './common.sass'
+//
+// import '/../styles/source.sass'
 //
 import lodash from 'lodash'
 //
-import load from './scripts/modules/load'
+import load from '/modules/load'
 //
 const component = (() => {
 	const div = document.createElement('div')
@@ -11,6 +12,6 @@ const component = (() => {
 	p.innerHTML = lodash.join(['hello', 'webpack'], ' ')
 	return div
 })()
-functions__on_ready(document, () => {
+load(document, () => {
 	document.body.appendChild(component)
 })
